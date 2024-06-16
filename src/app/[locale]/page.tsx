@@ -1,6 +1,7 @@
 import TranslationsProvider from "@/src/components/TranslationsProvider";
 import PropsWithLocale from "@/src/lib/PropsWithLocale";
 import { i18nNamespaces, initTranslations } from "@/src/i18n";
+import Header from "@/src/components/Header";
 
 export default async function Home({ params: { locale } }: PropsWithLocale) {
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
@@ -12,7 +13,7 @@ export default async function Home({ params: { locale } }: PropsWithLocale) {
         locale={locale}
         resources={resources}
       >
-        <h1>{t("hello")}</h1>
+        <Header />
       </TranslationsProvider>
     </main>
   );
