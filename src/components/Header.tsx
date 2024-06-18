@@ -53,11 +53,11 @@ const Header: React.FC = () => {
   }, []);
 
   return (
-    <div className="h-screen bg-black grid place-items-center overflow-hidden m-0">
+    <div className="h-screen grid place-items-center overflow-hidden m-0">
       <h1
         data-value={t("hello")}
         ref={h1Ref}
-        className="font-mono text-black text-center py-0 px-[clamp(1rem,2vw,3rem)] rounded-[clamp(0.4rem,0.75vw,1rem)] text-[clamp(3rem,10vw,10rem)] hover:bg-white hover:text-black transition-colors"
+        className="font-monospace text-black text-center py-0 text-3xl"
       >
         {t("hello")}
       </h1>

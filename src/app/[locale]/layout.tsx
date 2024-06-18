@@ -10,7 +10,7 @@ export async function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: "Gustavo Portofolio",
+  title: "Gustavo Portfolio",
   description: "Gustavo Müller's developer portfolio.",
 };
 

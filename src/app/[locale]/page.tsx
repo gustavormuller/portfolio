@@ -14,6 +14,7 @@ export default async function Home({ params: { locale } }: PropsWithLocale) {
         resources={resources}
       >
         <Header />
+        <h1 className="font-mono">AAAAAAAAAAAAAAAA</h1>
       </TranslationsProvider>
     </main>
   );
