@@ -7,7 +7,7 @@ export default async function Home({ params: { locale } }: PropsWithLocale) {
   const { t, resources } = await initTranslations(locale, i18nNamespaces);
 
   return (
-    <main>
+    <main className="bg-[#000] h-screen">
       <TranslationsProvider
         namespaces={i18nNamespaces}
         locale={locale}
