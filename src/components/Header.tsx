@@ -1,67 +1,114 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
 const Header: React.FC = () => {
   const { t } = useTranslation("default");
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-  const h1Ref = useRef<HTMLHeadingElement>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const liRefs = useRef<(HTMLLIElement | null)[]>([]);
+  const intervalRefs = useRef<(NodeJS.Timeout | null)[]>([]);
 
-  useEffect(() => {
-    const h1 = h1Ref.current;
-
-    const handleMouseOver = (event: MouseEvent) => {
+  const handleMouseOver = useCallback(
+    (element: HTMLElement, index: number) => {
       let iteration = 0;
 
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
+      if (intervalRefs.current[index]) {
+        clearInterval(intervalRefs.current[index]!);
       }
 
-      intervalRef.current = setInterval(() => {
-        if (h1) {
-          h1.innerText = h1.dataset
-            .value!.split("")
-            .map((letter, index) => {
-              if (index < iteration) {
-                return h1.dataset.value![index];
-              }
-              return letters[Math.floor(Math.random() * 26)];
-            })
-            .join("");
-
-          if (iteration >= h1.dataset.value!.length) {
-            if (intervalRef.current) {
-              clearInterval(intervalRef.current);
+      intervalRefs.current[index] = setInterval(() => {
+        element.innerText = element.dataset
+          .value!.split("")
+          .map((letter, idx) => {
+            if (idx < iteration) {
+              return element.dataset.value![idx];
             }
+            return letters[Math.floor(Math.random() * 26)];
+          })
+          .join("");
+
+        if (iteration >= element.dataset.value!.length) {
+          if (intervalRefs.current[index]) {
+            clearInterval(intervalRefs.current[index]!);
           }
-
-          iteration += 1 / 3;
         }
-      }, 20);
-    };
 
-    h1?.addEventListener("mouseover", handleMouseOver);
+        iteration += 1 / 3;
+      }, 20);
+    },
+    [letters]
+  );
+
+  useEffect(() => {
+    const liElements = liRefs.current;
+    const intervals = intervalRefs.current;
+    liElements.forEach((li, index) => {
+      if (li) {
+        li.addEventListener("mouseover", () => handleMouseOver(li, index));
+      }
+    });
 
     return () => {
-      h1?.removeEventListener("mouseover", handleMouseOver);
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
+      liElements.forEach((li, index) => {
+        if (li) {
+          li.removeEventListener("mouseover", () => handleMouseOver(li, index));
+        }
+      });
+      intervals.forEach((interval) => {
+        if (interval) {
+          clearInterval(interval!);
+        }
+      });
     };
-  }, []);
+  }, [handleMouseOver]);
 
   return (
-    <div className="h-screen grid place-items-center overflow-hidden m-0">
-      <h1
-        data-value={t("hello")}
-        ref={h1Ref}
-        className="font-monospace text-black text-center py-0 text-3xl"
+    <nav className="flex items-center justify-between px-48 py-4 font-monospace text-white">
+      <a
+        href="/"
+        className="flex items-center gap-1 text-2xl list-none cursor-pointer"
       >
-        {t("hello")}
-      </h1>
-    </div>
+        <li
+          ref={(el) => {
+            liRefs.current[0] = el;
+          }}
+          data-value={t("logo-1")}
+          className="flex items-center gap-1"
+        >
+          {t("logo-1")}
+        </li>
+      </a>
+      <ul className="flex space-x-10 text-2xl">
+        <li
+          className="cursor-pointer"
+          ref={(el) => {
+            liRefs.current[1] = el;
+          }}
+          data-value={t("Sobre")}
+        >
+          <a href="/">{t("Sobre")}</a>
+        </li>
+        <li
+          className="cursor-pointer"
+          ref={(el) => {
+            liRefs.current[2] = el;
+          }}
+          data-value={t("Projetos")}
+        >
+          <a href="/about">{t("Projetos")}</a>
+        </li>
+        <li
+          className="cursor-pointer"
+          ref={(el) => {
+            liRefs.current[3] = el;
+          }}
+          data-value={t("Contato")}
+        >
+          <a href="/contact">{t("Contato")}</a>
+        </li>
+      </ul>
+    </nav>
   );
 };
 
