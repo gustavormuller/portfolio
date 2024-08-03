@@ -8,13 +8,18 @@ async function Hero({ locale }: Locale) {
   const { t } = await initTranslations(locale, "default");
 
   return (
-    <section className="text-white px-60 py-72 font-monospace flex items-center justify-between">
-      <div>
-        <h1 className="text-5xl mb-1">{t("hero-title")}</h1>
-        <Hyperplexed />
+    <section className="text-gray-200 px-72 py-64 font-monospace">
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-5xl mb-1">{t("hero-title")}</h1>
+          <Hyperplexed />
+        </div>
+        <div className="w-48">
+          <WebDevSVG />
+        </div>
       </div>
-      <div className="w-48">
-        <WebDevSVG />
+      <div>
+        <p className="text-xl">{t("hero-p")}</p>
       </div>
     </section>
   );
