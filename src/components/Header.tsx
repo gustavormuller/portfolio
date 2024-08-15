@@ -64,10 +64,10 @@ const Header: React.FC = () => {
   }, [handleMouseOver]);
 
   return (
-    <nav className="flex items-center justify-between px-64 py-4 font-monospace text-white">
+    <nav className="flex items-center justify-between lg:px-10 2xl:px-64 py-4 font-monospace text-white">
       <a
         href="/"
-        className="flex items-center gap-1 text-2xl list-none cursor-pointer"
+        className="flex items-center gap-1 2xl:text-2xl lg:text-xl list-none cursor-pointer"
       >
         <li
           ref={(el) => {
@@ -79,7 +79,7 @@ const Header: React.FC = () => {
           {t("logo-1")}
         </li>
       </a>
-      <ul className="flex space-x-10 text-2xl">
+      <ul className="flex space-x-10 2xl:text-2xl lg:text-xl">
         <a href="https://www.linkedin.com/in/gustavormuller/" target="_blank">
           <li
             className="cursor-pointer"

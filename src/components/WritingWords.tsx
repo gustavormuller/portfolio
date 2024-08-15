@@ -60,7 +60,7 @@ const WritingWords: React.FC = () => {
   }, [currentWordIndex, words]);
 
   return (
-    <div className="font-mono text-gray-100 text-[42px] flex items-center">
+    <div className="font-mono text-gray-100 2xl:text-[42px] lg:text-[34px] flex items-center">
       <p>
         <span>{t("hero-subtitle")}</span>{" "}
         <span ref={spanRef}>{words[currentWordIndex]}</span>
