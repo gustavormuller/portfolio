@@ -64,7 +64,7 @@ const Header: React.FC = () => {
   }, [handleMouseOver]);
 
   return (
-    <nav className="flex items-center justify-between px-64 py-4 font-monospace text-white">
+    <nav className="flex items-center justify-between px-56 py-4 font-monospace text-white">
       <a
         href="/"
         className="flex items-center gap-1 text-2xl list-none cursor-pointer"

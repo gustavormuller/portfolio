@@ -1,7 +1,6 @@
 import React from "react";
 import { Locale } from "../lib/PropsWithLocale";
 import { initTranslations } from "../i18n";
-import WebDevSVG from "./SVGicons/WebDevSVG";
 import Hyperplexed from "./WritingWords";
 import Image from "next/image";
 import profilePic from "@/public";
@@ -10,7 +9,7 @@ async function Hero({ locale }: Locale) {
   const { t } = await initTranslations(locale, "default");
 
   return (
-    <section className="text-gray-100 px-64 py-36 font-monospace">
+    <section className="text-gray-100 px-64 py-40 font-monospace">
       <div className="flex justify-between items-end">
         <div className="pb-3">
           <h1 className="text-5xl">{t("hero-title")}</h1>
