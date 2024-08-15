@@ -80,33 +80,39 @@ const Header: React.FC = () => {
         </li>
       </a>
       <ul className="flex space-x-10 text-2xl">
-        <li
-          className="cursor-pointer"
-          ref={(el) => {
-            liRefs.current[1] = el;
-          }}
-          data-value={t("Sobre")}
-        >
-          <a href="/">{t("Sobre")}</a>
-        </li>
-        <li
-          className="cursor-pointer"
-          ref={(el) => {
-            liRefs.current[2] = el;
-          }}
-          data-value={t("Projetos")}
-        >
-          <a href="/about">{t("Projetos")}</a>
-        </li>
-        <li
-          className="cursor-pointer"
-          ref={(el) => {
-            liRefs.current[3] = el;
-          }}
-          data-value={t("Contato")}
-        >
-          <a href="/contact">{t("Contato")}</a>
-        </li>
+        <a href="https://www.linkedin.com/in/gustavormuller/" target="_blank">
+          <li
+            className="cursor-pointer"
+            ref={(el) => {
+              liRefs.current[1] = el;
+            }}
+            data-value={t("Sobre")}
+          >
+            {t("Sobre")}
+          </li>
+        </a>
+        <a href="https://github.com/gustavormuller" target="_blank">
+          <li
+            className="cursor-pointer"
+            ref={(el) => {
+              liRefs.current[2] = el;
+            }}
+            data-value={t("Projetos")}
+          >
+            {t("Projetos")}
+          </li>
+        </a>
+        <a href="https://www.linkedin.com/in/gustavormuller/" target="_blank">
+          <li
+            className="cursor-pointer"
+            ref={(el) => {
+              liRefs.current[3] = el;
+            }}
+            data-value={t("Contato")}
+          >
+            {t("Contato")}
+          </li>
+        </a>
       </ul>
     </nav>
   );
